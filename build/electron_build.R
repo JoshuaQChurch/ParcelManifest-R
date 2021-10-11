@@ -26,7 +26,7 @@ electricShine::electrify(
   product_name = "Parcel Manifest",
   short_description = "Standalone application to automate day-to-day tasks.",
   semantic_version = "1.0.0",
-  cran_like_url = "https://cran.r-project.org",
+  cran_like_url = "http://cran.r-project.org",
   local_package_path = app_path,
   build_path = build_path,
   function_name = "run_app",

@@ -4,13 +4,13 @@ echo "======================================"
 echo "===  Parcel Manifest Setup Script  ==="
 echo "======================================"
 echo.
- 
+
 echo "Step 1: Downloading R version 4.1.1. Please wait..."
 echo "===================================================="
 echo. 
 
 powershell -Command "$ProgressPreference = 'silentlyContinue';"^
- "Invoke-WebRequest https://cran.r-project.org/bin/windows/base/R-4.1.1-win.exe -Outfile $HOME/Downloads/R-4.1.1-win.exe;"^
+ "Invoke-WebRequest http://cran.r-project.org/bin/windows/base/R-4.1.1-win.exe -Outfile $HOME/Downloads/R-4.1.1-win.exe;"^
  "$ProgressPreference = 'Continue';" 
 
 echo. 
@@ -43,8 +43,12 @@ echo "Step 4: Building Parcel Manifest tool."
 echo "NOTE: This step takes a while (~20 minutes). Please wait..."
 echo "=========================================================="
 
-powershell -Command "& 'C:\Program Files\R\R-4.1.1\bin\Rscript.exe' $HOME/Documents/ParcelManifest-R/build/electron_build.R"
-
+:: Check if admin or standard user
+if exist "C:\Users\%username%\Documents\R\R-4.1.1\bin\Rscript.exe" (
+    powershell -Command "& 'C:\Users\%username%\Documents\R\R-4.1.1\bin\Rscript.exe' C:\Users\%username%\Documents\ParcelManifest-R\build\electron_build.R"
+) else (
+    powershell -Command "& 'C:\Program Files\R\R-4.1.1\bin\Rscript.exe' C:\Users\%username%\Documents\ParcelManifest-R\build\electron_build.R"
+)
 echo.
 echo "Parcel Manifest Installed!"
 echo. 
@@ -52,8 +56,8 @@ echo.
 echo "Step 5: Creating Desktop shortcut..."
 echo "====================================="
 
-powershell -Command "$SourceFileLocation = '$HOME\Documents\ParcelManifest-R\build\output\ParcelManifest\dist\win-unpacked\ParcelManifest.exe';"^
-    "$ShortcutLocation = '$HOME\Desktop\ParcelManifest.lnk';"^
+powershell -Command "$SourceFileLocation = 'C:\Users\%username%\Documents\ParcelManifest-R\build\output\ParcelManifest\dist\win-unpacked\ParcelManifest.exe';"^
+    "$ShortcutLocation = 'C:\Users\%username%\Desktop\ParcelManifest.lnk';"^
     "$WScriptShell = New-Object -ComObject WScript.Shell;"^
     "$Shortcut = $WScriptShell.CreateShortcut($ShortcutLocation);"^
     "$Shortcut.TargetPath = $SourceFileLocation;"^
