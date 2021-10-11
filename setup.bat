@@ -5,12 +5,13 @@ echo "===  Parcel Manifest Setup Script  ==="
 echo "======================================"
 echo.
 
-echo "Step 1: Downloading R version 4.1.1. Please wait..."
-echo "===================================================="
+echo "Step 1: Downloading R version 4.1.1."
+echo "NOTE: This may take a few minutes. Please wait..."
+echo "================================================="
 echo. 
 
 powershell -Command "$ProgressPreference = 'silentlyContinue';"^
- "Invoke-WebRequest http://cran.r-project.org/bin/windows/base/R-4.1.1-win.exe -Outfile $HOME/Downloads/R-4.1.1-win.exe;"^
+ "Invoke-WebRequest http://cran.r-project.org/bin/windows/base/old/4.1.1/R-4.1.1-win.exe -Outfile $HOME/Downloads/R-4.1.1-win.exe;"^
  "$ProgressPreference = 'Continue';" 
 
 echo. 
@@ -18,7 +19,7 @@ echo "R 4.1.1 Downloaded!"
 echo. 
 
 echo "Step 2: Installing R."
-echo "======================="
+echo "======================"
 powershell -Command "Start-Process $HOME/Downloads/R-4.1.1-win.exe -NoNewWindow -Wait;"
 echo .
 echo "R installed!"
