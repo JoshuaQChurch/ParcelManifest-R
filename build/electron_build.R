@@ -8,10 +8,17 @@ if (!"electricShine" %in% installed.packages()) {
   remotes::install_github("JoshuaQChurch/electricShine")
 }
 
+# '~' expansion generally is ~/Documents 
+base_path <- normalizePath(
+  file.path("~", "ParcelManifest-R")
+)
+
 nodejs_version <- "v14.18.0"
 app_name <- "ParcelManifest"
-build_path <- normalizePath(file.path(".", "output"))
-app_path <- normalizePath(file.path("..", "ParcelManifest"))
+build_path <- normalizePath(file.path(base_path, "build", "output"))
+base::unlink(build_path, recursive = TRUE)
+base::dir.create(build_path, showWarnings = FALSE, recursive = TRUE)
+app_path <- normalizePath(file.path(base_path, "src"))
 
 # Create Electron package 
 electricShine::electrify(
@@ -27,7 +34,6 @@ electricShine::electrify(
   run_build = FALSE,
   nodejs_version = nodejs_version
 )
-
 
 # Move updated 'background.js' file.
 file.copy(
