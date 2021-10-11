@@ -1,5 +1,11 @@
 options(timeout = 100)
 
+base::local({
+  r <- getOption("repos")
+  r["CRAN"] <- "http://cran.rstudio.com"
+  options(repos = r)
+})
+
 if (!"electricShine" %in% installed.packages()) {
   if (!"remotes" %in% installed.packages()) {
     install.packages("remotes")
