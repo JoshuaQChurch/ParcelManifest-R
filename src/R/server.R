@@ -41,6 +41,8 @@ command_reprint <- function(dt = NULL) {
   cdstyl <- order(as.integer(dt$CDSTYL), decreasing = TRUE)
   dt <- dt[cdstyl, ]
 
+  KeyboardSimulator::keybd.press("tab", hold = FALSE)
+
   for (i in 1:nrow(dt)) {
 
     if ( i %% 100 == 0 ) {
@@ -60,6 +62,9 @@ command_reprint <- function(dt = NULL) {
 
 #' @description Carton Manifest Commands
 command_carton_manifest <- function(dt = NULL) {
+
+  KeyboardSimulator::keybd.press("tab", hold = FALSE)
+
   for (i in 1:nrow(dt)) {
 
     if ( i %% 100 == 0 ) {
