@@ -49,7 +49,7 @@ echo "NOTE: This step takes a while (~20 minutes). Please wait..."
 echo "=========================================================="
 
 :: Check if admin or standard user
-if exist "$env:USERPROFILE\Documents\R\R-4.1.1\bin\Rscript.exe" (
+if exist "%userprofile%\Documents\R\R-4.1.1\bin\Rscript.exe" (
     powershell -Command "& '$env:USERPROFILE\Documents\R\R-4.1.1\bin\Rscript.exe' $env:USERPROFILE\Documents\ParcelManifest-R\build\electron_build.R"
 ) else (
     powershell -Command "& 'C:\Program Files\R\R-4.1.1\bin\Rscript.exe' $env:USERPROFILE\Documents\ParcelManifest-R\build\electron_build.R"
