@@ -15,7 +15,7 @@ if (!"electricShine" %in% installed.packages()) {
 }
 
 # '~' expansion generally is ~/Documents 
-base_path <- normalizePath(file.path(Sys.getenv("USERPROFILE"), "Documents"))
+base_path <- normalizePath(file.path(Sys.getenv("USERPROFILE"), "Documents", "ParcelManifest-R"))
 
 nodejs_version <- "v14.18.0"
 app_name <- "ParcelManifest"
